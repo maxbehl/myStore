@@ -1,0 +1,18 @@
+<div class=".detail-container">
+    <img class="product-image" src="{{product.url}}" alt="Product image">
+    <p class=".detail-item">{{ product.name }}</p>
+    <p class=".detail-item">{{ product.price }}</p>
+    <p class=".detail-item">{{ product.description }}</p>
+    <form (ngSubmit)="addToCart()">
+        <select  [(ngModel)]="selectedValue"  class="select-input" aria-label="Default select example" [ngModelOptions]="{ standalone: true }">
+            <option 
+                *ngFor="let value of values"
+                [selected]="value === 1">
+                {{ value }}
+            </option>
+        </select>
+        <input type="submit" value="Add to Cart" class="product-detail btn btn-primary">
+    </form>
+    <br>
+    <a class=".back-link" routerLink="/">Back</a>
+  </div>

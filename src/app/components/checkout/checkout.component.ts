@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,15 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
 
-  fullName: string | null = '';
-  totalPrices: number = 0;
-  constructor(private route: ActivatedRoute) { }
+  buyer: {
+    fullName: string,
+    address: string,
+    creditCard: number
+  } = {
+    fullName: '',
+    address: '',
+    creditCard: 0
+  }
+  checkoutSum: number = 0;
+  constructor(private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.fullName = params.get('firstName');
-      this.totalPrices = Number(params.get('totalPrices'));
-    })
+    this.checkoutSum = this.cartService.getCheckoutSum();
+    this.buyer = this.cartService.getBuyerInfo();
   }
 
 }

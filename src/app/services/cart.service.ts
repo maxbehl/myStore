@@ -6,8 +6,33 @@ import { Product } from '../models/Product';
 })
 export class CartService {
   items: Product[] = [];
+  buyer: {
+    fullName: string;
+    address: string;
+    creditCard: number;
+  }
   
-  constructor() { }
+  constructor() {
+    this.buyer = {
+      fullName: '',
+      address: '',
+      creditCard: 0
+    }
+   }
+
+  submitBuyerInfo(fullName: string, address: string, creditCard: number): void {
+    this.buyer.fullName = fullName;
+    this.buyer.address = address;
+    this.buyer.creditCard = creditCard;
+  }
+
+  getBuyerInfo(): {
+    fullName: string;
+    address: string;
+    creditCard: number;
+  } {
+    return this.buyer;
+  }
 
   addToCart(product: Product) {
     const index = this.items.findIndex(item => item.id === product.id);
@@ -34,12 +59,12 @@ export class CartService {
     }
   }
 
-  getTotalPrices(): number {
-    let totalPrices = 0;
+  getCheckoutSum(): number {
+    let checkoutSum = 0;
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      totalPrices += item.price * item.amount;
+      checkoutSum += item.price * item.amount;
     }
-    return totalPrices;
+    return checkoutSum;
   }
 }

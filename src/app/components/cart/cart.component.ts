@@ -10,25 +10,24 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponent implements OnInit {
   items: Product[] = [];
-  totalPrices: number = 0;
+  checkoutSum: number = 0;
   constructor(private cartService: CartService, private route: Router) { }
 
   ngOnInit() {
     this.items = this.cartService.getItems();
-    this.totalPrices = this.cartService.getTotalPrices();
+    this.checkoutSum = this.cartService.getCheckoutSum();
   }
 
   onSubmit(value: any) {
-    console.log("On Submit in Cart aufgerufen!")
-    this.cartService.clearCart();
-    this.route.navigate([`success/${value.fullName}/${this.totalPrices}`]);
+    this.cartService.submitBuyerInfo(value.fullName, value.address, value.creditCard);
+    this.route.navigate([`success`]);
   }
   onChange(id: number, value: string): void {
     if (parseInt(value) === 0 || value === '') {
       this.cartService.deleteItem(id);
       alert("Deleted from cart!");
     }
-    this.totalPrices = this.cartService.getTotalPrices();
+    this.checkoutSum = this.cartService.getCheckoutSum();
   }
 
 }

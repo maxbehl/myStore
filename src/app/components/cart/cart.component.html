@@ -1,5 +1,4 @@
-<div *ngIf="items.length; else emptyCart" class="cart">
-    <div class="cart-header">
+<div *ngIf="items.length; else emptyCart" class="cart-header">
         <h1>Cart</h1>
         <div name="items_overview" class="cart-item-details">
             <div name="items_list" *ngFor="let item of items">
@@ -13,16 +12,15 @@
                 </div>
             </div>
             <div name="price">
-                <p>Total Price: {{totalPrices}}</p>
+                <p>Total Price: {{checkoutSum}}</p>
             </div>
         </div>
-        <div name="form">
-            <app-user-info (checkoutSuccess)="onSubmit($event)"></app-user-info>
+        <div>
+            <app-user-info (checkout)="onSubmit($event)"></app-user-info>
         </div>
-    </div>
 </div>
 <ng-template #emptyCart>
     <div class="empty-cart-message">
-        Cart is empty! Please, <a routerLink="/"> add product</a>.
+        Cart is empty! Please, <a routerLink="/">add product</a>.
     </div>
 </ng-template>

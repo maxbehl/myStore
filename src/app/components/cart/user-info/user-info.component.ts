@@ -6,19 +6,25 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./user-info.component.css'],
 })
 export class UserInfoComponent implements OnInit {
-  @Output() checkoutSuccess: EventEmitter<string> = new EventEmitter();
+  @Output() checkout: EventEmitter<{fullName:string,address:string,creditCard:number}> = new EventEmitter();
 
   constructor() { }
-  fullName: string='';
-  address: string='';
-  creditCard: number | string = '';
+  buyer: {
+    fullName: string,
+    address: string,
+    creditCard: number
+  } = {
+    fullName: '',
+    address: '',
+    creditCard: 0
+  }
 
   ngOnInit(): void {
   }
   onSubmit():void{
-    this.checkoutSuccess.emit(this.fullName);
-    this.fullName='';
-    this.address='';
-    this.creditCard='';
+    this.checkout.emit(this.buyer);
+    this.buyer.fullName='';
+    this.buyer.address='';
+    this.buyer.creditCard=0;
   }
 }

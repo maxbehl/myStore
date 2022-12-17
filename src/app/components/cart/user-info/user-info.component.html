@@ -1,13 +1,13 @@
 <form class="form-margin" #form="ngForm"  (ngSubmit)="onSubmit()">
     <h1> Checkout </h1>
     <label>Full Name: </label><br />
-    <input type='text' name='fullName' required minlength="9" placeholder="Enter Full Name" [(ngModel)]="fullName">
+    <input type='text' name='fullName' required minlength="9" placeholder="Enter Full Name" [(ngModel)]="buyer.fullName">
     <br />
     <label>Address: </label><br />
-    <input type='text' name='address' required  minlength="10" placeholder="Enter Address" [(ngModel)]="address">
+    <input type='text' name='address' required  minlength="10" placeholder="Enter Address" [(ngModel)]="buyer.address">
     <br />
     <label>Credit Card Number: </label><br />
-    <input type='text' name='creditCard' required  minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="creditCard">
+    <input type='text' name='creditCard' required  minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="buyer.creditCard">
     <br />
     <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary" />
   </form>

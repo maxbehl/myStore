@@ -3,9 +3,9 @@
         <div class="confirmation-header confirmation-item">
             SUCCESS &#9989;
         </div>
-        <div class="confirmation-item">Thanks, <b>{{ fullName }}</b></div>
-        <div class="confirmation-item">Your <b>${{ totalPrices }}</b> order is confirmed!</div>
-        <div class="confirmation-item">Your Order will be shipped within 5 working days!</div>
+        <div class="confirmation-item">Thanks, <b>{{ buyer.fullName }}</b></div>
+        <div class="confirmation-item">Your <b>${{ checkoutSum }}</b> order is confirmed!</div>
+        <div class="confirmation-item">Your Order will be shipped to <b>{{ buyer.address }}</b> within 5 working days!</div>
         <div class="confirmation-item">
                 <a routerLink="/">
                     Return to our products

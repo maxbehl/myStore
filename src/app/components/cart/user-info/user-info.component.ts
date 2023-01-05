@@ -6,18 +6,21 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./user-info.component.css'],
 })
 export class UserInfoComponent implements OnInit {
-  @Output() checkout: EventEmitter<{fullName:string,address:string,creditCard:number}> = new EventEmitter();
+  @Output() checkout: EventEmitter<{fullName:string,address:string,creditCard:string}> = new EventEmitter();
 
   constructor() { }
   buyer: {
     fullName: string,
     address: string,
-    creditCard: number
+    creditCard: string
   } = {
     fullName: '',
     address: '',
-    creditCard: 0
+    creditCard: ''
   }
+  validFullName:boolean=true;
+  validAddress:boolean=true;
+  validCreditCard:boolean=true;
 
   ngOnInit(): void {
   }
@@ -25,6 +28,28 @@ export class UserInfoComponent implements OnInit {
     this.checkout.emit(this.buyer);
     this.buyer.fullName='';
     this.buyer.address='';
-    this.buyer.creditCard=0;
+    this.buyer.creditCard='';
+  }
+
+  validateFullName(): void{
+    if(this.buyer.fullName.length < 9){
+      this.validFullName=false;
+    } else {
+      this.validFullName=true;
+    }
+  }
+  validateAddress(): void{
+    if(this.buyer.address.length < 10){
+      this.validAddress=false;
+    } else {
+      this.validAddress=true;
+    }
+  }
+  validateCreditCard(): void{
+    if(this.buyer.creditCard.toString().length===16){
+      this.validCreditCard=true;
+    } else {
+      this.validCreditCard=false;
+    }
   }
 }

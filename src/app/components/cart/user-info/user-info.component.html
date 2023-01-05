@@ -1,13 +1,18 @@
 <form class="form-margin" #form="ngForm"  (ngSubmit)="onSubmit()">
     <h1> Checkout </h1>
     <label>Full Name: </label><br />
-    <input type='text' name='fullName' required minlength="9" placeholder="Enter Full Name" [(ngModel)]="buyer.fullName">
+    <input type='text' name='fullName' required minlength="9" placeholder="Enter Full Name" [(ngModel)]="buyer.fullName" (ngModelChange)="validateFullName()">
     <br />
     <label>Address: </label><br />
-    <input type='text' name='address' required  minlength="10" placeholder="Enter Address" [(ngModel)]="buyer.address">
+    <input type='text' name='address' required  minlength="10" placeholder="Enter Address" [(ngModel)]="buyer.address" (ngModelChange)="validateAddress()">
     <br />
     <label>Credit Card Number: </label><br />
-    <input type='text' name='creditCard' required  minlength="16" maxlength="16" placeholder="(16-digit number)" [(ngModel)]="buyer.creditCard">
+    <input type='text' name='creditCard' required  minlength="16" maxlength="16" placeholder="(16-digit)" [(ngModel)]="buyer.creditCard" (ngModelChange)="validateCreditCard()">
     <br />
     <input [disabled]="form.invalid" type='submit' value="Submit" class="btn btn-primary" />
   </form>
+  <div name="validation-messages">
+    <div *ngIf="!validFullName">The Full Name must be at least 9 characters!</div>
+    <div *ngIf="!validAddress">The Address must be at least 10 characters!</div>
+    <div *ngIf="!validCreditCard">The Credit Card Number must be exactly 16 characters long!</div>
+  </div>

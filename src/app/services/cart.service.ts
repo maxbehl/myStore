@@ -9,18 +9,18 @@ export class CartService {
   buyer: {
     fullName: string;
     address: string;
-    creditCard: number;
+    creditCard: string;
   }
   
   constructor() {
     this.buyer = {
       fullName: '',
       address: '',
-      creditCard: 0
+      creditCard: ''
     }
    }
 
-  submitBuyerInfo(fullName: string, address: string, creditCard: number): void {
+  submitBuyerInfo(fullName: string, address: string, creditCard: string): void {
     this.buyer.fullName = fullName;
     this.buyer.address = address;
     this.buyer.creditCard = creditCard;
@@ -29,7 +29,7 @@ export class CartService {
   getBuyerInfo(): {
     fullName: string;
     address: string;
-    creditCard: number;
+    creditCard: string;
   } {
     return this.buyer;
   }

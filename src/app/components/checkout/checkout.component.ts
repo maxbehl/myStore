@@ -12,11 +12,11 @@ export class CheckoutComponent implements OnInit {
   buyer: {
     fullName: string,
     address: string,
-    creditCard: number
+    creditCard: string
   } = {
     fullName: '',
     address: '',
-    creditCard: 0
+    creditCard: ''
   }
   checkoutSum: number = 0;
   constructor(private route: ActivatedRoute, private cartService: CartService) { }
@@ -24,6 +24,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.checkoutSum = this.cartService.getCheckoutSum();
     this.buyer = this.cartService.getBuyerInfo();
+    this.cartService.clearCart();
   }
-
 }
